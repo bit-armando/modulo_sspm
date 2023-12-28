@@ -1,0 +1,7 @@
+{% if visitantes_activos %}
+    <ul>
+        {%for visitante in visitantes_activos%}
+            <li>{{visitante.folio_gafete}}</li>
+        {%endfor%}
+    </ul>
+{% endif %}
