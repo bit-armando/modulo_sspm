@@ -1,7 +1,53 @@
-{% if visitantes_activos %}
-    <ul>
-        {%for visitante in visitantes_activos%}
-            <li>{{visitante.folio_gafete}}</li>
-        {%endfor%}
-    </ul>
-{% endif %}
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registro de visitantes</title>
+    </head>
+
+
+    <body>
+        <h1>Registro de visitantes</h1>
+
+    {% if visitantes_activos %}
+        {% comment %} <ul>
+            {%for visitante in visitantes_activos%}
+                <li>{{visitante.folio_gafete}}</li>
+            {%endfor%}
+        </ul> {% endcomment %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Departamento destino</th>
+                    <th>Motivo de visita</th>
+                    <th>Folio gafete</th>
+                    <th>Hora de entrada</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visitante in visitantes_activos %}
+                    <tr>
+                        <td>{{visitante.nombres}} {{visitante.apellidos}}</td>
+                        <td>{{visitante.departamento_destino}}</td>
+                        <td>{{visitante.motivo_visita}}</td>
+                        <td>{{visitante.folio_gafete}}</td>
+                        <td>{{visitante.fecha_entrada}}</td>
+                        <td>
+                            {% if not visitante.fecha_salida %}
+                                <form method="post" action="{% url "marcar_salida" visitante.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit">Marcar salida</button>
+                                </form>
+                            {% else %}
+                                <p>Visitante ya marcó salida</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+        </table>
+    {% endif %}
+
+    </body>
+</html>
