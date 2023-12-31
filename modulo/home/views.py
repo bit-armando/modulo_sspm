@@ -8,7 +8,7 @@ from .models import Visitantes
 # Vista de la ingesta de los datos
 def index(request):
     context = {}
-    return render(request, 'home/index.html', context)
+    return render(request, 'index.html', context)
 
 def registrar_entrada(request):
     if request.method == 'POST':
@@ -21,16 +21,16 @@ def registrar_entrada(request):
         visitante.save()
         
         
-        return render(request, 'home/index.html', {})
+        return render(request, 'index.html', {})
     context = {}
-    return render(request, 'home/index.html', context)
+    return render(request, 'index.html', context)
 
 def salida(request):
     visitantes_activos = Visitantes.objects.filter(fecha_salida__isnull=True)
     context = {
         'visitantes_activos': visitantes_activos,
     }
-    return render(request, 'home/salida.html', context)
+    return render(request, 'salida.html', context)
 def marcar_salida(request, visitante_id):
     visitante = Visitantes.objects.get(pk=visitante_id)
     visitante.fecha_salida = timezone.now()

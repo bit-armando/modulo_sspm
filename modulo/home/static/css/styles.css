@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+html{
+    font-family: 'Lato', sans-serif;
+}
+
+body{
+    background-color: rgb(219, 219, 219);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nombres{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.div-central, .div-inferior{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    font-size: 1.8rem;
+}
+
+.nombre textarea, .apellido_p textarea, .apellido_m textarea{
+    height: 2.8rem;
+    font-size: 2rem;
+}
+
+.motivos textarea{
+    height: 20rem;
+    font-size: 1.5rem;
+}
+
+.foto img{
+    height: 19rem;
+    width: 25rem;
+}
+
+select, input[type="number"]{
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 5rem;
+    font-size: 2rem;
+}
+
+.btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button{
+    height: 6rem;
+    width: 12rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    left: 50%;
+    right: 50%;
+}
+
+textarea{
+    border: none;
+    border-radius: 5px;
+    resize: none;
+}
+
+/* table */
+.table-container {
+    border: 1px solid #e8e7e7;
+    border-radius: 11px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 637px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* table-border */
+tbody tr:not(:last-child) {
+    border: none;
+}
+
+tbody tr td:not(:last-child) {
+    border: none;
+}
+
+
+/* style tr, td, th */
+tr th {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: rgb(0, 79, 198);
+}
+
+tr td {
+    color: #606060;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+th, td {
+    padding: 16px;
+    text-align: center;
+}
+
+/* even and odd color */
+tbody tr:nth-child(odd) {
+    background-color: rgb(219, 219, 219);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.btn-salida{
+    font-size: 1.2rem;
+    
+    background-color: rgb(255, 0, 0);
+}
+
