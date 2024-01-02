@@ -13,11 +13,15 @@
 </head>
 
 <body>
+    <div class="navbar">
+        <a href="{% url 'salida' %}">Marcar salida</a>
+    </div>
 
     <h1>Registro de Entrada</h1>
 
-    <form method="post" action="{% url 'registrar_entrada' %}">
+    <form method="post" action="{% url 'registrar_entrada' %}" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form.as_p }}
 
         <div class="nombres">
             <div class="flex nombre">
@@ -42,14 +46,24 @@
                 <textarea id="motivo" name="motivo" required></textarea>
             </div>
 
-            <div class="flex foto">
+            {% comment %} <div class="flex foto">
                 <label for="foto">Foto:</label>
-                <input type="file" accept="image/*" capture="camera" id="foto" name="foto" onchange="previsualizarFoto(this)">
-                <img id="previsualizacion" src="#" alt="Previsualización de la Foto" style="display:none;">
-            </div>
-        </div>
+                <button id="openCamera" type="button">Abrir camara</button>
+                <button id="takePhoto" type="button">Tomar foto</button>
+                <video id="webcam" width="640" height="480"  autoplay></video>
+                <canvas id="canvas" width="640" height="480"></canvas>
+            </div> {% endcomment %}
 
+            <div class="flex">
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                <img class="webcam" id="preview" src="" alt="Image preview" style="display: none">
+            </div>
+
+            
+        </div>
         
+
         <div class="div-inferior">
             <div class="flex">
                 <label for="departamento">Departamento:</label>
@@ -73,16 +87,8 @@
         </div>
         
     </form>
-
-    <script>
-        function previsualizarFoto(input) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#previsualizacion').attr('src', e.target.result).show();
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    </script>
+    <script src="{% static 'js/camara.js' %}"></script>
+    <script src="{% static 'js/previsualizar.js' %}"></script>
 
 </body>
 </html>

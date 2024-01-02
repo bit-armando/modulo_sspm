@@ -10,14 +10,13 @@
 
 
     <body>
+        <div class="navbar">
+            <a href="{% url 'registrar_entrada' %}">Marcar entrada</a>
+        </div>
+
         <h1>Registro de visitantes</h1>
 
         {% if visitantes_activos %}
-            {% comment %} <ul>
-                {%for visitante in visitantes_activos%}
-                    <li>{{visitante.folio_gafete}}</li>
-                {%endfor%}
-            </ul> {% endcomment %}
             <table border="1">
                 <thead>
                     <tr>
@@ -42,6 +41,7 @@
                                     <form method="post" action="{% url "marcar_salida" visitante.id %}">
                                         {% csrf_token %}
                                         <button class="btn-salida" type="submit">Marcar salida</button>
+                                        {% comment %} <button>Mostrar</button> {% endcomment %}
                                     </form>
                                 {% else %}
                                     <p>Visitante ya marcó salida</p>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
-
-import cv2
+from django.views.generic import ListView
+from django.db.models import Q
 
 from .models import Visitantes
 
@@ -12,18 +12,20 @@ def index(request):
 
 def registrar_entrada(request):
     if request.method == 'POST':
+
         nombre = request.POST['nombres']
         apellido = request.POST['apellido_paterno'] + ' ' + request.POST['apellido_materno']
         departamento = request.POST['departamento']
         motivo = request.POST['motivo']
         folio = request.POST['folio_gafete']
-        visitante = Visitantes(nombres=nombre, apellidos=apellido, departamento_destino=departamento, motivo_visita=motivo, folio_gafete=folio)
+        
+        image = request.FILES['imagen']
+
+        visitante = Visitantes(nombres=nombre, apellidos=apellido, departamento_destino=departamento, motivo_visita=motivo, folio_gafete=folio, imagen=image)
         visitante.save()
-        
-        
+
         return render(request, 'index.html', {})
-    context = {}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', {})
 
 def salida(request):
     visitantes_activos = Visitantes.objects.filter(fecha_salida__isnull=True)
@@ -36,3 +38,23 @@ def marcar_salida(request, visitante_id):
     visitante.fecha_salida = timezone.now()
     visitante.save()
     return redirect('salida')
+
+
+class Consulta(ListView):
+    model = Visitantes
+    template_name = 'consulta.html'
+    context_object_name = 'visitantes'
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        fecha_inicio = self.request.GET.get('fecha_inicio', None)
+        fecha_fin = self.request.GET.get('fecha_fin', None)
+
+        if fecha_inicio and fecha_fin:
+            queryset = queryset.filter(
+                Q(fecha_entrada__range=[fecha_inicio, fecha_fin]) |
+                Q(fecha_salida__range=[fecha_inicio, fecha_fin]) |
+                (Q(fecha_entrada__lte=fecha_inicio) & Q(fecha_salida__gte=fecha_fin))
+            )
+
+        return queryset

@@ -50,6 +50,11 @@ label{
     width: 25rem;
 }
 
+.webcam{
+    width: 27rem;
+    height: 20.5rem;
+}
+
 select, input[type="number"]{
     border: 1px solid black;
     border-radius: 5px;
