@@ -35,7 +35,7 @@
     <tbody>
       {% for visitante in visitantes %}
         <tr>
-          <td><img src="{{visitante.imagen}}" alt=""></td>
+          <td><img class="foto-consulta imagen-modal" src="/media-files/{{visitante.imagen}}" alt=""></td>
           <td>{{visitante.nombres}} {{visitante.apellidos}}</td>
           <td>{{visitante.departamento_destino}}</td>
           <td>{{visitante.motivo_visita}}</td>
@@ -49,4 +49,6 @@
     <a href="{% url 'index' %}">Entradas</a>
     <a href="{% url 'salida' %}">Activos</a>
   </div>
+
+  <script src="{% static 'js/modal.js' %}"></script>
 {% endblock %}
