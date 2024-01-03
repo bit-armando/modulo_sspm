@@ -48,13 +48,11 @@ class Consulta(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         fecha_inicio = self.request.GET.get('fecha_inicio', None)
-        fecha_fin = self.request.GET.get('fecha_fin', None)
+        # fecha_fin = self.request.GET.get('fecha_fin', None)
 
-        if fecha_inicio and fecha_fin:
+        if fecha_inicio:
             queryset = queryset.filter(
-                Q(fecha_entrada__range=[fecha_inicio, fecha_fin]) |
-                Q(fecha_salida__range=[fecha_inicio, fecha_fin]) |
-                (Q(fecha_entrada__lte=fecha_inicio) & Q(fecha_salida__gte=fecha_fin))
+                fecha_entrada__date=fecha_inicio
             )
 
         return queryset
