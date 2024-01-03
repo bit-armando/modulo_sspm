@@ -1,13 +1,15 @@
 {% comment %} {% extends 'base_generic.html' %} {% endcomment %}
 
 {% block content %}
+  <a href="{% url 'index' %}">Marcar entrada</a>
+  <a href="{% url 'salida' %}">Salida</a>
   <h1>Lista de Visitantes</h1>
 
   <form method="get" action="">
     <label for="fecha_inicio">Fecha de inicio:</label>
-    <input type="date" name="fecha_inicio" value="{{ request.GET.fecha_inicio }}">
+    <input type="date" name="fecha_inicio" value="{{ request.GET.fecha_inicio }}" />
     <label for="fecha_fin">Fecha de fin:</label>
-    <input type="date" name="fecha_fin" value="{{ request.GET.fecha_fin }}">
+    <input type="date" name="fecha_fin" value="{{ request.GET.fecha_fin }}" />
     <button type="submit">Filtrar</button>
   </form>
 

@@ -1,2 +1,2 @@
 django
-opencv-python
+Pillow
