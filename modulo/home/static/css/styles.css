@@ -12,6 +12,34 @@ body{
     justify-content: center;
 }
 
+.navbar{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+}
+
+a:hover{
+    color: #606060;
+}
+
+li{
+    list-style: none;
+    font-size: 2rem;
+}
+
+.lista{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
 .nombres{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -48,6 +76,7 @@ label{
 .foto img{
     height: 19rem;
     width: 25rem;
+    object-fit: cover;
 }
 
 .webcam{
@@ -58,7 +87,7 @@ label{
 select, input[type="number"]{
     border: 1px solid black;
     border-radius: 5px;
-    height: 5rem;
+    height: 3rem;
     font-size: 2rem;
 }
 
@@ -76,6 +105,10 @@ button{
     border: 1px solid black;
     left: 50%;
     right: 50%;
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 textarea{

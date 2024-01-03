@@ -13,10 +13,6 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="{% url 'salida' %}">Marcar salida</a>
-        <a href="{% url 'consulta' %}">Consulta</a>
-    </div>
 
     <h1>Registro de Entrada</h1>
 
@@ -55,7 +51,7 @@
                 <canvas id="canvas" width="640" height="480"></canvas>
             </div> {% endcomment %}
 
-            <div class="flex">
+            <div class="flex foto">
                 <label for="imagen">Imagen:</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" required>
                 <img class="webcam" id="preview" src="" alt="Image preview" style="display: none">
@@ -88,6 +84,12 @@
         </div>
         
     </form>
+
+    <div class="navbar">
+        <a href="{% url 'salida' %}">Activos</a>
+        <a href="{% url 'consulta' %}">Consulta</a>
+    </div>
+
     <script src="{% static 'js/camara.js' %}"></script>
     <script src="{% static 'js/previsualizar.js' %}"></script>
 

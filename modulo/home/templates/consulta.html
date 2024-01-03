@@ -1,8 +1,15 @@
 {% comment %} {% extends 'base_generic.html' %} {% endcomment %}
 
 {% block content %}
-  <a href="{% url 'index' %}">Marcar entrada</a>
-  <a href="{% url 'salida' %}">Salida</a>
+
+  <head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"> 
+  </head>
+  
   <h1>Lista de Visitantes</h1>
 
   <form method="get" action="">
@@ -13,9 +20,32 @@
     <button type="submit">Filtrar</button>
   </form>
 
-  <ul>
-    {% for visitante in visitantes %}
-      <li>{{ visitante.nombres }} {{ visitante.apellidos }} - {{ visitante.fecha_entrada }} - {{ visitante.fecha_salida }}</li>
-    {% endfor %}
-  </ul>
+  
+  <table border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Departamento al que ingreso</th>
+            <th>Motivo de Visita</th>
+            <th>Fecha de Ingreso</th>
+            <th>Fecha de Salida</th>
+        </tr>
+    </thead>
+      
+    <tbody>
+      {% for visitante in visitantes %}
+        <tr>
+          <td>{{visitante.nombres}} {{visitante.apellidos}}</td>
+          <td>{{visitante.departamento_destino}}</td>
+          <td>{{visitante.motivo_visita}}</td>
+          <td>{{visitante.fecha_entrada}}</td>
+          <td>{{ visitante.fecha_salida }}</td>
+        </tr>
+      {% endfor %}
+  </table>
+
+  <div class="navbar">
+    <a href="{% url 'index' %}">Entradas</a>
+    <a href="{% url 'salida' %}">Activos</a>
+  </div>
 {% endblock %}
