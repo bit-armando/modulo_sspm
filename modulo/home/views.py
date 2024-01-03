@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views.generic import ListView
-from django.db.models import Q
 
 from .models import Visitantes
 
@@ -20,7 +19,8 @@ def registrar_entrada(request):
         folio = request.POST['folio_gafete']
         
         image = request.FILES['imagen']
-
+        image.name = str(timezone.now().year) + '_' + str(timezone.now().month) + '_' + str(timezone.now().day) + '_' + str(nombre) + str(folio) + '.jpg'
+        
         visitante = Visitantes(nombres=nombre, apellidos=apellido, departamento_destino=departamento, motivo_visita=motivo, folio_gafete=folio, imagen=image)
         visitante.save()
 
@@ -48,8 +48,7 @@ class Consulta(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         fecha_inicio = self.request.GET.get('fecha_inicio', None)
-        # fecha_fin = self.request.GET.get('fecha_fin', None)
-
+        
         if fecha_inicio:
             queryset = queryset.filter(
                 fecha_entrada__date=fecha_inicio
