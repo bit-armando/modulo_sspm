@@ -91,6 +91,24 @@ select, input[type="number"]{
     font-size: 2rem;
 }
 
+input[type="date"]{
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 2.5rem;
+    font-size: 2rem;
+}
+
+.form-date{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: end;
+    gap: 3rem;
+}
+
+.form-date button{
+    height: 2.8rem;
+}
+
 .btn{
     display: flex;
     flex-direction: column;
