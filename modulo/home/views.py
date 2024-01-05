@@ -44,6 +44,7 @@ class Consulta(ListView):
     model = Visitantes
     template_name = 'consulta.html'
     context_object_name = 'visitantes'
+    paginate_by = 10
     
     def get_queryset(self):
         queryset = super().get_queryset()

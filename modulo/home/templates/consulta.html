@@ -7,6 +7,11 @@
   
     <link href="{% static 'css/styles.css' %}" rel="stylesheet"> 
   </head>
+
+  <div class="navbar">
+    <a href="{% url 'index' %}">Entradas</a>
+    <a href="{% url 'salida' %}">Activos</a>
+  </div>
   
   <h1>Lista de Visitantes</h1>
 
@@ -45,10 +50,20 @@
       {% endfor %}
   </table>
 
-  <div class="navbar">
-    <a href="{% url 'index' %}">Entradas</a>
-    <a href="{% url 'salida' %}">Activos</a>
+  {% if is_paginated %}
+  <div class="pagination">
+      <span class="page-links">
+          {% if page_obj.has_previous %}
+              <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">anterior</a>
+          {% endif %}
+          <span class="page-current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+          {% if page_obj.has_next %}
+              <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">siguiente</a>
+          {% endif %}
+      </span>
   </div>
-
+  {% endif %}
   <script src="{% static 'js/modal.js' %}"></script>
 {% endblock %}

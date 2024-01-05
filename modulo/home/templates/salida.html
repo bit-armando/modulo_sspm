@@ -10,7 +10,11 @@
 
 
     <body>
-
+        <div class="navbar">
+            <a href="{% url 'registrar_entrada' %}">Entradas</a>
+            <a href="{% url 'consulta' %}">Consulta</a>
+        </div>
+        
         <h1>Registro de visitantes</h1>
 
         {% if visitantes_activos %}
@@ -50,9 +54,6 @@
             </table>
         {% endif %}
 
-        <div class="navbar">
-            <a href="{% url 'registrar_entrada' %}">Entradas</a>
-            <a href="{% url 'consulta' %}">Consulta</a>
-        </div>
+
     </body>
 </html>
