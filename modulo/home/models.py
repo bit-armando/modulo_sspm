@@ -18,14 +18,14 @@ class Visitantes(models.Model):
         return self.nombres + ' ' + self.apellidos
 
 
-class Conteo(models.Model):
-    fecha = models.DateField(auto_now_add=True)
-    llamadas_recibidas = models.IntegerField()
-    informacion_detenidos = models.IntegerField()
-    informacion_tramites = models.IntegerField()
-    visitas_detenidos = models.IntegerField()
-    quejas = models.IntegerField()
+# class Conteo(models.Model):
+#     fecha = models.DateField(auto_now_add=True)
+#     llamadas_recibidas = models.IntegerField()
+#     informacion_detenidos = models.IntegerField()
+#     informacion_tramites = models.IntegerField()
+#     visitas_detenidos = models.IntegerField()
+#     quejas = models.IntegerField()
 
-    def __str__(self):
-        return str(self.fecha)
+#     def __str__(self):
+#         return str(self.fecha)
     
