@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 test.py
+files/
+db.sqlite3
