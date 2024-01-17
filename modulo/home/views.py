@@ -56,3 +56,11 @@ class Consulta(ListView):
             )
 
         return queryset
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        fecha_inicio = self.request.GET.get('fecha_inicio', None)
+        
+        if fecha_inicio:
+            context['fecha_inicio'] = fecha_inicio
+
+        return context
