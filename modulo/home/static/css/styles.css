@@ -218,3 +218,10 @@ tbody tr:nth-child(even) {
     max-height: 80%;
 }
 
+.pagination a{
+    font-size: 3rem;
+}
+
+.pagination span{
+    font-size: 2rem;
+}
